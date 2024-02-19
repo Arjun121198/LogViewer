@@ -1,0 +1,20 @@
+{
+    "name": "logviewer/logviewer",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Logviewer\\Logviewer\\": "src/"
+        }
+    },
+    
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Logviewer\\Logviewer\\LogServiceProvider"
+            ]
+        }
+    }
+}
