@@ -8,9 +8,61 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin: 0;
+            padding: 0;
         }
-
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .top-bar {
+            background-color: #34495e;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-input {
+            width: 200px;
+            padding: 5px;
+            border: none;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+        
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .log-table th, .log-table td {
+            padding: 10px;
+            border-bottom: 1px solid #666;
+        }
+        
+        .log-table th {
+            background-color: #34495e;
+            color: #ecf0f1;
+            text-align: left;
+        }
+        
+        .log-table tr:nth-child(even) {
+            background-color: #2c3e50;
+        }
+        
+        .log-level-icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
         #container {
             display: flex;
             height: 100vh;
@@ -19,7 +71,7 @@
         #sidebar {
             width: 20%;
             padding: 20px;
-            background-color: #f2f2f2;
+            background-color: #34495e;
             overflow-y: auto;
         }
 
@@ -28,42 +80,29 @@
             padding: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-
         .log-file {
             cursor: pointer;
-            color: #007bff;
+            color: #ecf0f1;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
         }
 
         .log-file:hover {
             text-decoration: underline;
+            color: #3498db;
+        }
+        
+        .active > .page-link,
+        .page-link.active {
+            background-color: #3498db;
+            border-color: #3498db;
         }
     </style>
 </head>
 <body>
     <div id="container">
         <div id="sidebar">
-            <h2>Log Files</h2>
+            <h2 class="header">Log Files</h2>
             <ul id="log-file-list">
                 @foreach ($logs as $log)
                     <li class="log-file" data-file="{{ $log }}">
@@ -107,17 +146,17 @@
                     method: 'POST',
                     data: { logFile: logFile },
                     success: function (response) {
-                    // Format log entries for DataTables
-                    var logEntries = response.logEntries.map(function (entry) {
-                        return [
-                            entry.timestamp,
-                            entry.content
-                        ];
-                    });
+                        // Format log entries for DataTables
+                        var logEntries = response.logEntries.map(function (entry) {
+                            return [
+                                entry.timestamp,
+                                entry.content
+                            ];
+                        });
 
-                    // Update the DataTable with the log entries
-                    dataTable.clear().rows.add(logEntries).draw();
-                },
+                        // Update the DataTable with the log entries
+                        dataTable.clear().rows.add(logEntries).draw();
+                    },
                     error: function (error) {
                         console.error('Error fetching log entries:', error);
                     }
