@@ -5,8 +5,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.2",
-        "laravel/framework": "^5.4",
-        "logviewer/logviewer": "^1.0"
+        "laravel/framework": "^5.4"
     },
     "autoload": {
         "psr-4": {
