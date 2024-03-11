@@ -3,9 +3,7 @@
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
-    "require": {
-        "logviewer/logviewer": "@stable"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
             "Logviewer\\Logviewer\\": "src/"
