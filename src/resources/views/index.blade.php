@@ -118,6 +118,7 @@
                 <thead>
                     <tr>
                         <th>Time</th>
+                        <th>Log Type</th>
                         <th>Log Entry</th>
                     </tr>
                 </thead>
@@ -148,8 +149,12 @@
                     success: function (response) {
                         // Format log entries for DataTables
                         var logEntries = response.logEntries.map(function (entry) {
+                            var levelParts = entry.level.split('.');
+                            var levelWord = levelParts.length > 1 ? levelParts[1] : entry.level;
+
                             return [
                                 entry.timestamp,
+                                levelWord,
                                 entry.content
                             ];
                         });
