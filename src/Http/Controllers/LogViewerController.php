@@ -22,7 +22,25 @@ class LogViewerController extends Controller
             'logContent' => $logContent
         ]);
     }
-
+    public function loginCheck(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        $logEmail = env('LOG_USER_EMAIL');
+        $logPassword = env('LOG_USER_PASSWORD');
+        if (empty($logEmail) || empty($logPassword)) {
+            $message = 'Please add email and password to the environment file.';
+        } else {
+            if ($email === $logEmail && $password === $logPassword) {
+                $message = 'login is successful';
+                $request->session()->put('logginguserid', auth()->user()->id);
+                return redirect('logviewer::index');
+             } else {
+                $message = 'Invalid email or password.';
+            }
+        }
+        return view('logviewer::login',compact('message'));
+    }
     public function getLogEntries(Request $request)
     {
         $logFile = $request->input('logFile');
