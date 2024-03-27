@@ -18,5 +18,10 @@
                 "Logviewer\\Logviewer\\LogServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan vendor:publish --provider=\"Logviewer\\Logviewer\\LogServiceProvider\" --tag=public --force",
+        ],
     }
 }

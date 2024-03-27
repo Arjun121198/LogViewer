@@ -29,13 +29,14 @@ class LogViewerController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $logEmail = config('app.log_user_email');
-        $logPassword = config('app.log_user_password');
+        $logEmail = config('logviewer.log_user_email');
+        $logPassword = config('logviewer.log_user_password');
         
         if ($email === $logEmail && $password === $logPassword) {
             // Authentication successful
             $message = 'Login is successful';
             session()->put('logginguseremail', $email);
+
             return redirect('/log-viewer');
         } else {
             // Authentication failed
@@ -101,4 +102,13 @@ class LogViewerController extends Controller
         return $logEntries;
     }
     
+    /**
+     * 
+     * 
+     */
+    public function logout()
+    {
+        session()->flush();
+        return redirect('/login');
+    }
 }
