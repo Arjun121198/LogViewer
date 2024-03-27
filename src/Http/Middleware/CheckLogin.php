@@ -1,10 +1,10 @@
 <?php
 
-namespace  Logviewer\Logviewer\Http\Middleware;
+namespace Logviewer\Logviewer\Http\Middleware;
 
 use Closure;
 
-class checkLogin
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class checkLogin
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->get('logginguserid')) {
-            return redirect('/login')->with('error','Please Login to access ');
+        if (!$request->session()->has('logginguseremail')) {
+            return redirect('/login')->with('error', 'Please login to access.');
         }
+
         return $next($request);
     }
 }

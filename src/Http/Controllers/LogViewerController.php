@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LogViewerController extends Controller
 {
@@ -22,25 +24,27 @@ class LogViewerController extends Controller
             'logContent' => $logContent
         ]);
     }
+
     public function loginCheck(Request $request)
     {
         $email = $request->email;
         $password = $request->password;
-        $logEmail = env('LOG_USER_EMAIL');
-        $logPassword = env('LOG_USER_PASSWORD');
-        if (empty($logEmail) || empty($logPassword)) {
-            $message = 'Please add email and password to the environment file.';
+        $logEmail = config('logviewer.log_user_email');
+        $logPassword = config('logviewer.log_user_password');
+        
+        if ($email === $logEmail && $password === $logPassword) {
+            // Authentication successful
+            $message = 'Login is successful';
+            session()->put('logginguseremail', $email);
+
+            return redirect('/log-viewer');
         } else {
-            if ($email === $logEmail && $password === $logPassword) {
-                $message = 'login is successful';
-                $request->session()->put('logginguserid', auth()->user()->id);
-                return redirect('logviewer::index');
-             } else {
-                $message = 'Invalid email or password.';
-            }
+            // Authentication failed
+            $message = 'Invalid email or password.';
+            return view('logviewer::login', compact('message'));
         }
-        return view('logviewer::login',compact('message'));
     }
+    
     public function getLogEntries(Request $request)
     {
         $logFile = $request->input('logFile');
@@ -98,4 +102,13 @@ class LogViewerController extends Controller
         return $logEntries;
     }
     
+    /**
+     * 
+     * 
+     */
+    public function logout()
+    {
+        session()->flush();
+        return redirect('/login');
+    }
 }
