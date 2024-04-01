@@ -6,98 +6,7 @@
     <title>Log Viewer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .top-bar {
-            background-color: #34495e;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .search-input {
-            width: 200px;
-            padding: 5px;
-            border: none;
-            background-color: #2c3e50;
-            color: #ecf0f1;
-        }
-        
-        .log-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        .log-table th, .log-table td {
-            padding: 10px;
-            border-bottom: 1px solid #666;
-        }
-        
-        .log-table th {
-            background-color: #34495e;
-            color: #ecf0f1;
-            text-align: left;
-        }
-        
-        .log-table tr:nth-child(even) {
-            background-color: #2c3e50;
-        }
-        
-        .log-level-icon {
-            font-size: 18px;
-            margin-right: 10px;
-        }
-        
-        #container {
-            display: flex;
-            height: 100vh;
-        }
-
-        #sidebar {
-            width: 20%;
-            padding: 20px;
-            background-color: #34495e;
-            overflow-y: auto;
-        }
-
-        #content {
-            width: 80%;
-            padding: 20px;
-        }
-
-        .log-file {
-            cursor: pointer;
-            color: #ecf0f1;
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .log-file:hover {
-            text-decoration: underline;
-            color: #3498db;
-        }
-        
-        .active > .page-link,
-        .page-link.active {
-            background-color: #3498db;
-            border-color: #3498db;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('vendor/logviewer/logviewer/src/public/css/log-viewer.css') }}">
 </head>
 <body>
     <div id="container">
@@ -113,6 +22,9 @@
         </div>
 
         <div id="content">
+        <div class="logout-container">
+            <a href="{{url('/log-logout')}}" class="btn btn-primary">Logout</a>
+        </div>
             <h1 class="text-center">Log Viewer</h1>
             <table id="log-table" class="table">
                 <thead>

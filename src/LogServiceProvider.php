@@ -20,6 +20,8 @@ Class LogServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/logviewer.php' => config_path('logviewer.php'),
+            __DIR__.'/public/css/log-viewer.css' => public_path('log-viewer.css'),
         ]);
+       
     }
 }

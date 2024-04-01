@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Logviewer\Logviewer\Http\Controllers', 'middleware
     Route::get('/login', function () {
         return view('logviewer::login');
     })->middleware('login');
-    Route::get('/logout', 'LogViewerController@logout');
+    Route::get('/log-logout', 'LogViewerController@logout');
     Route::post('/login-check', 'LogViewerController@loginCheck');
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/log-viewer', 'LogViewerController@index');

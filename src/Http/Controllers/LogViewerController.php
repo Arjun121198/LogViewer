@@ -29,9 +29,10 @@ class LogViewerController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $logEmail = config('logviewer.log_user_email');
-        $logPassword = config('logviewer.log_user_password');
-        
+        $configPath = base_path('vendor/logviewer/logviewer/src/config/logviewer.php');
+        $config = require $configPath;
+        $logEmail = $config['log_user_email'];
+        $logPassword = $config['log_user_password'];
         if ($email === $logEmail && $password === $logPassword) {
             // Authentication successful
             $message = 'Login is successful';
