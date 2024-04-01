@@ -22,7 +22,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php artisan vendor:publish --provider='Logviewer\\Logviewer\\LogServiceProvider'"
+            "php artisan vendor:publish --provider='Logviewer\\Logviewer\\LogServiceProvider'  --tag=config --tag=public --force"
         ]
     }
 }
