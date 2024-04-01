@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
 
 class LogViewerController extends Controller
 {
@@ -29,10 +30,8 @@ class LogViewerController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $configPath = base_path('vendor/logviewer/logviewer/src/config/logviewer.php');
-        $config = require $configPath;
-        $logEmail = $config['log_user_email'];
-        $logPassword = $config['log_user_password'];
+        $logEmail = Config('logviewer.log_user_email');
+        $logPassword = Config('logviewer.log_user_password');
         if ($email === $logEmail && $password === $logPassword) {
             // Authentication successful
             $message = 'Login is successful';
