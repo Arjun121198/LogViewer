@@ -2,37 +2,35 @@
 
 Logviewer is a Laravel package that provides a log viewing functionality for your Laravel applications.
 
-# Installation
+## Installation
 
 You can install the Logviewer package via Composer:
 
     composer require logviewer/logviewer
 
-# Configuration
+## Configuration
 
 After installing the Logviewer package, you need to publish its configuration file using the following artisan command:
 
     php artisan vendor:publish --provider="Logviewer\Logviewer\LogServiceProvider"
 
-This will publish the configuration file to Config/logviewer.php.
+This will publish the configuration file to **Config/logviewer.php.**
 
-# Usage
+## Usage
 
-Once the package is installed and configured, you can use the log viewing functionality by accessing the /log-viewer route in your Laravel application.
+Once the package is installed and configured, you can use the log viewing functionality by accessing the **/log-viewer** route in your Laravel application.
 
-It redirect to login page 
+It redirects to the login page.
 
-# Login Credentials
+## Login Credentials
 
-    Email : sparkout@123.com
-    Password : Sparkout@123
+- **Email:** sparkout@123.com
+- **Password:** Sparkout@123
 
-# Contributing
+## Contributing
 
 Thank you for considering contributing to the Logviewer package! Please feel free to submit bug reports, feature requests, or pull requests.
 
-# License
+## License
 
 The Logviewer package is open-source software licensed under the MIT license.
-
-
