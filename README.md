@@ -20,6 +20,14 @@ Usage
 
 Once the package is installed and configured, you can use the log viewing functionality by accessing the /log-viewer route in your Laravel application.
 
+It redirect to login page 
+
+Login Credentials
+
+Email : sparkout@123.com
+
+Password : Sparkout@123
+
 Contributing
 
 Thank you for considering contributing to the Logviewer package! Please feel free to submit bug reports, feature requests, or pull requests.
